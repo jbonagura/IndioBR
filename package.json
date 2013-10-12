@@ -1,0 +1,15 @@
+{
+  "name": "graoApp",
+  "description": "Your Grão Application",
+  "version": "0.0.1",
+  "author": "Your Name <youremail@yourdomain.com>",
+  "readme" : "README.md",
+  "dependencies": {
+	    "graojs": "0.0.x"
+  },
+  "keywords": [
+    "grao",
+    "graojs"
+  ],
+  "engines": { "node": ">= 0.8.x" }
+}

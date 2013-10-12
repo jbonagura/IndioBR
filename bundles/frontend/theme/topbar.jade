@@ -1,0 +1,35 @@
+.navbar.navbar-inverse.navbar-fixed-top(ng-controller='TopbarPublicController')
+	.container
+		a.navbar-brand(href='/')
+			| GrãoJS
+		// button.btn.btn-navbar(type='button', data-toggle='collapse', ng-init='isCollapsed = true', ng-click='isCollapsed = !isCollapsed', data-target='.navbar-collapse')
+		// 	span.icon-bar
+		// 	span.icon-bar
+		// 	span.icon-bar 
+		.navbar-collapse.collapse.navbar-responsive-collapse(collapse='isCollapsed')
+			ul.nav.navbar-nav
+				li
+					a(href='/') 
+						i.icon-home 
+						| Home 
+				li
+					a(href='/manifest')
+						i.icon-info-sign 
+						| Manifest
+				li.dropdown
+					a.dropdown-toggle(href='#', data-toggle='dropdown') Admin
+					ul.dropdown-menu
+						include adminmenu
+			button.btn.btn.btn-primary(type='button',
+										popover-popup-delay=1000,
+										popover-is-auto-open='{{share.notify.isAutoOpen}}', 
+										popover-trigger='click',  
+										popover-title='{{share.notify.title}}', 
+										popover='{{share.notify.content}}', 
+										popover-placement='bottom') {{share.notify.btn}}
+			| 
+			img(src='/image/flag/pt-br.png',
+										popover-trigger='mouseenter',  
+										popover-title='Locales...', 
+										popover='...', 
+										popover-placement='bottom')

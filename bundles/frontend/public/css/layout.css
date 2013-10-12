@@ -1,0 +1,19 @@
+@font-face
+{
+	font-family: VidaLoka;
+	src: url(/font/Vidaloka-Regular.ttf);
+}
+
+body
+{
+	font-family: VidaLoka;
+	padding-top: 50px;
+}
+
+.container_top {
+	padding-top: 48px;
+}
+
+.jumbotron_center {
+	text-align: center;
+}

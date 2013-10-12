@@ -1,0 +1,16 @@
+h3 User
+	small  {{user.username}} - {{user.email}}
+form.form-horizontal(role='form', ng-submit='createOrUpdate()')
+	.form-group
+		input.form-control(type='text', ng-model='user.username', ng-bind='user.username', placeholder='Your username')
+	.form-group
+		input.form-control(type='text', ng-model='user.email',  ng-bind='user.email', placeholder='Your email')
+	.form-group
+		include password
+	.form-group
+		//span.input-group-addon @
+		button.btn.btn.btn-success(type='submit') Save 
+		| 
+		button.btn.btn.btn-warning(type='button', ng-click='reset()') Reset
+		| 
+		button.btn.btn.btn-danger(type='button', ng-click='remove()') Remove
