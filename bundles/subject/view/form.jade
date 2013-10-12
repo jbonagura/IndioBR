@@ -1,8 +1,12 @@
-h3 Subject
-	small  {{subject.}}
+h3 User
+	small  {{subject.subject}} - {{subject.description}}
 form.form-horizontal(role='form', ng-submit='createOrUpdate()')
-	
 	.form-group
+		input.form-control(type='text', ng-model='subject.subject', ng-bind='subject.subject', placeholder='The subject')
+	.form-group
+		input.form-control(type='text', ng-model='subject.description',  ng-bind='subject.description', placeholder='Description...')
+	.form-group
+		//span.input-group-addon @
 		button.btn.btn.btn-success(type='submit') Save 
 		| 
 		button.btn.btn.btn-warning(type='button', ng-click='reset()') Reset

@@ -6,7 +6,7 @@ var models,
 	Group; // object/class
 var service = {
 	get : function(req, res) {
-			Group.findOne({_id : req.params.id}, function(err, Group) {
+			group.findOne({_id : req.params.id}, function(err, group) {
 			if (err)
 			{
 				event.newEvent(err).error().present().log('error');
@@ -27,7 +27,7 @@ var service = {
 		});
 	},
 	create : function(req, res) {
-		Group = new Group(req.body);
+		group = new Group(req.body);
 		group.save(function(err) {
 			if (err) {
 				event.newEvent(err).error().present().log('error');
@@ -39,7 +39,7 @@ var service = {
 	},
 	update : function(req, res) {
 		delete req.body._id;
-		Group.findOneAndUpdate({_id : req.params.id }, req.body, { upsert : true }, function(err, Group) {
+		Group.findOneAndUpdate({_id : req.params.id }, req.body, { upsert : true }, function(err, group) {
 			if (err) {
 				event.newEvent(err).error().present().log('error');
 			} else {

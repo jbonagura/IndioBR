@@ -7,7 +7,7 @@ var models,
 
 var service = {
 	get : function(req, res) {
-			Subject.findOne({_id : req.params.id}, function(err, Subject) {
+			Subject.findOne({_id : req.params.id}, function(err, subject) {
 			if (err)
 			{
 				event.newEvent(err).error().present().log('error');
@@ -28,7 +28,7 @@ var service = {
 		});
 	},
 	create : function(req, res) {
-		Subject = new Subject(req.body);
+		subject = new Subject(req.body);
 		subject.save(function(err) {
 			if (err) {
 				event.newEvent(err).error().present().log('error');
@@ -40,7 +40,7 @@ var service = {
 	},
 	update : function(req, res) {
 		delete req.body._id;
-		Subject.findOneAndUpdate({_id : req.params.id }, req.body, { upsert : true }, function(err, Subject) {
+		Subject.findOneAndUpdate({_id : req.params.id }, req.body, { upsert : true }, function(err, subject) {
 			if (err) {
 				event.newEvent(err).error().present().log('error');
 			} else {

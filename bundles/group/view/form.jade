@@ -1,8 +1,12 @@
-h3 Group
-	small  {{group.}}
+h3 User
+	small  {{group.name}} - {{group.description}}
 form.form-horizontal(role='form', ng-submit='createOrUpdate()')
-	
 	.form-group
+		input.form-control(type='text', ng-model='group.name', ng-bind='group.name', placeholder='Group Name')
+	.form-group
+		input.form-control(type='text', ng-model='group.description',  ng-bind='group.description', placeholder='Description...')
+	.form-group
+		//span.input-group-addon @
 		button.btn.btn.btn-success(type='submit') Save 
 		| 
 		button.btn.btn.btn-warning(type='button', ng-click='reset()') Reset

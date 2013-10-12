@@ -1,4 +1,4 @@
-function SubjectPublicController($scope, Subject, share, $log) 
+function SubjectPublicController($scope, subject, share, $log) 
 {	
 	$scope.share = share;
 	$scope.createOrUpdate = function() 

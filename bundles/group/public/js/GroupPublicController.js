@@ -1,4 +1,4 @@
-function GroupPublicController($scope, Group, share, $log) 
+function GroupPublicController($scope, group, share, $log) 
 {	
 	$scope.share = share;
 	$scope.createOrUpdate = function() 
