@@ -1,0 +1,70 @@
+extends ../theme/layout
+block content
+  script(src="js/socket.io.js")
+  .row
+    h2 App
+    .row
+      .col-md-10
+        .row
+          h2 Ferramentas
+        .row
+          h2 Aplicacao
+          h4 Usuários
+          .col-md-2
+            div(id="users")
+          .col-md-4
+            div(id="conversation")
+              input(id="data")
+              input(type="button" id="datasend" value="send")
+      .col-md-2
+        h2 Features
+        ul
+          li Feature 1
+          li Feature 2
+          li Feature 3
+          li Feature 4
+    .row
+      .col-md-12
+        h2 Slider
+  script(src="http://code.jquery.com/jquery-1.8.0.min.js")
+  script
+    
+    var socket = io.connect('http://localhost:8022');
+
+    // on connection to server, ask for user's name with an anonymous callback
+    socket.on('connect', function(){
+      // call the server-side function 'adduser' and send one parameter (value of prompt)
+      socket.emit('adduser', prompt("Qual o seu nome?"));
+    });
+
+    // listener, whenever the server emits 'updatechat', this updates the chat body
+    socket.on('updatechat', function (username, data) {
+      $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+    });
+
+    // listener, whenever the server emits 'updateusers', this updates the username list
+    socket.on('updateusers', function(data) {
+      $('#users').empty();
+      $.each(data, function(key, value) {
+        $('#users').append('<div>' + key + '</div>');
+      });
+    });
+
+    // on load of page
+    $(function(){
+      // when the client clicks SEND
+      $('#datasend').click( function() {
+        var message = $('#data').val();
+        $('#data').val('');
+        // tell server to execute 'sendchat' and send along one parameter
+        socket.emit('sendchat', message);
+      });
+
+      // when the client hits ENTER on their keyboard
+      $('#data').keypress(function(e) {
+        if(e.which == 13) {
+          $(this).blur();
+          $('#datasend').focus().click();
+        }
+      });
+    });
