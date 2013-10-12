@@ -7,7 +7,7 @@ var UserSchema = function(di) {
 		facebook : {
 			like : Boolean,
 			share : Boolean,
-			friends_connected : [Number],
+			friendsConnected : [Number],
 			linkesOnShare : Number,
 			enableStream : Boolean
 		},
@@ -37,7 +37,7 @@ var UserSchema = function(di) {
 		likes: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
 		dislikes: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
 		followers: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
-		following: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
+		following: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }]
 	};
 	this.mongoose = new di.mongoose.Schema(this.json);
 };
