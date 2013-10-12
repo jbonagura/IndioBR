@@ -1,20 +1,18 @@
 var UserSchema = function(di) {
 	validate = di.validate;
 	validator = di.validators.user;
-
-	this.mongooseFacebook = new di.mongoose.Schema({
-		like : Boolean,
-		share : Boolean,
-		friends_connected : [Integer],
-		linkesOnShare : Integer,
-		enableStream : Boolean
-	});
 	
 	this.json = {
 		id : di.mongoose.Schema.ObjectId,
-		facebook: this.mongooseFacebook,
+		facebook : {
+			like : Boolean,
+			share : Boolean,
+			friends_connected : [Number],
+			linkesOnShare : Number,
+			enableStream : Boolean
+		},
 		facebook_id : {
-			type : Integer,
+			type : Number,
 			required : true,
 			index : true,
 			unique : true
