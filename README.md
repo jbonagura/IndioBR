@@ -14,3 +14,4 @@ IndioBR - ITA Code JAM
  * Fernando A. Damião - [GitHub](https://github.com/fadamiao)
  * Henrique Lima - [GitHub](https://github.com/pandalima)
  * Jordan Bonagura - [GitHub](https://github.com/jbonagura)
+ * Gustavo De Mari - [GitHub](https://github.com/gustavodemari)
