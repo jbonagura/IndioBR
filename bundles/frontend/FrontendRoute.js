@@ -20,7 +20,23 @@ var FrontendRoute = function (di) {
 	di.graoExpress.get('/manifest', function(req, res){
 		res.render('frontend/view/manifest');
 	});
+
+	di.graoExpress.get('/camera', function(req, res){
+		res.render('frontend/view/camera');
+	});
 	
+di.graoExpress.get('/presentation', function(req, res){
+		res.render('frontend/view/presentation');
+	});
+
+di.graoExpress.get('/draw', function(req, res){
+		res.render('frontend/view/draw');
+	});
+
+di.graoExpress.get('/chat', function(req, res){
+		res.render('frontend/view/chat');
+	});
+
 	di.graoExpress.get('/events/pull', function(req, res){
 		res.jsonp(di.event.listener.push());
 	});
