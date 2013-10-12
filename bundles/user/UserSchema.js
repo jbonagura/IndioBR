@@ -33,7 +33,11 @@ var UserSchema = function(di) {
 		},
 		age_range : String,
 		sex : String,
-		address : String
+		address : String,
+		likes: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
+		dislikes: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
+		followers: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
+		following: [{ type: di.mongoose.Schema.Types.ObjectId, ref: 'User' }],
 	};
 	this.mongoose = new di.mongoose.Schema(this.json);
 };
