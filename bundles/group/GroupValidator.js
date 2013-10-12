@@ -3,4 +3,4 @@ var GroupValidator = function(di) {
 	return {
 	};
 };
-module.exports = exports = UserValidator;
+module.exports = exports = GroupValidator;

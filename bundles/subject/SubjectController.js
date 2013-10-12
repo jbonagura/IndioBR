@@ -4,6 +4,7 @@ var models,
 	event,
 	subject, // object
 	Subject; // object/class
+
 var service = {
 	get : function(req, res) {
 			Subject.findOne({_id : req.params.id}, function(err, Subject) {
@@ -72,8 +73,8 @@ var SubjectController = function(di) {
 	event = new di.event.newEvent('Instance created').success().present().log('info');
 	models = di.models;
 	controllers = di.controllers;
-	Subject = models.Subject; // object/class
-	Subject = new Subject(); // object
+	Subject = models.subject; // object/class
+	subject = new Subject(); // object
 	this.service = service;
 	this.admin = admin;
 };

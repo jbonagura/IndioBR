@@ -72,8 +72,8 @@ var GroupController = function(di) {
 	event = new di.event.newEvent('Instance created').success().present().log('info');
 	models = di.models;
 	controllers = di.controllers;
-	Group = models.Group; // object/class
-	Group = new Group(); // object
+	Group = models.group; // object/class
+	group = new Group(); // object
 	this.service = service;
 	this.admin = admin;
 };
