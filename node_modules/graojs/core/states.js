@@ -1,0 +1,6 @@
+module.exports = exports = {
+		INITIAL: 'INITIAL',
+		RELATIONAL: 'RELATIONAL',
+		RUNNING: 'RUNNING',
+		FINALIZE: 'FINALIZE'
+};

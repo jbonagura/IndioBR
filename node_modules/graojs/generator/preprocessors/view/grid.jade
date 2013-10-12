@@ -1,0 +1,13 @@
+.table-responsive
+	table.table.table-striped(data-ng-init="query()")
+		thead
+			tr
+				{GRAO}{TH_SCHEMA_LABELS}
+		tbody
+			tr(ng-repeat="item in items") 
+				td
+					button.btn.btn.btn-primary(type='button', ng-click='select($index)') {{{GRAO}{SCHEMA_ID}}}
+				{{{GRAO}{TD_SCHEMA}}}
+				td
+					// button.btn.btn.btn-success(type='button', ng-click='') * 
+					button.btn.btn.btn-danger(type='button', ng-click='delete($index)') X
