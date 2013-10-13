@@ -17,13 +17,12 @@
       a(href='#myCarousel', data-slide='next').right.carousel-control
 
 script(type='text/javascript').
-    var webrtc = new SimpleWebRTC({
-      localVideoEl: 'localVideo',
-      remoteVideosEl: 'remotesVideos',
-      autoRequestMedia: true
-    });
+  var webrtc = new SimpleWebRTC({
+    localVideoEl: 'localVideo',
+    remoteVideosEl: 'remotesVideos',
+    autoRequestMedia: true
+  });
 
-    webrtc.on('readyToCall', function () {
-        // you can name it anything
-        webrtc.joinRoom('room');
-    });
+  webrtc.on('readyToCall', function () {
+    webrtc.joinRoom('room');
+  });
