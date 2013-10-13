@@ -1,15 +1,6 @@
-function IntPublicController($scope, $timeout, $http, share, $log) 
+function IntPublicController($scope) 
 {
-	$scope.share = share;
-	$scope.eventTimer = function(){
-		$scope.share.events();
-		
-		eventTime = $timeout($scope.eventTimer, 3000);
-	};
-	 
-	var eventTimer = $timeout($scope.eventTimer, 3000);
-	    
-	$scope.stop = function(){
-		$timeout.cancel(eventTimer);
-	};
+	 $scope.items = ['code', 'call', 'text', 'projects', 'whiteboard', 'draw', 'chat', 'screen', 
+	                 'research', 'calc', 'slides', 'debug', 'music'];
+	 $scope.selection = $scope.items[0];
 }

@@ -1,24 +1,24 @@
 h2 Stack | Heap
 ul.nav.nav-pills
   li
+    button.btn.btn-success Epilogue(ret)
+    | 
+    select(ng-model="selection", ng-options="item for item in items")
+    | 
+    button.btn.btn-default %EIP
+  li
     button.btn.btn-warning %EBP
   li.active
-    a(href='/') Hacking %ESP
+    a(href='#') Hacking %ESP
   li
-    a(href='/') Assembly
+    a(href='#') Family
   li
-    a(href='/') C
+    a(href='#') Assembly/C/Javascript
   li
-    a(href='/') Protocols
+    a(href='#') Protocols
   li
-    a(href='/') Architecture
+    a(href='#') Network
   li
-    a(href='/') Network
+    a(href='#') Sex
   li
-    a(href='/') Sex
-  li
-    a(href='/') Family
-  li
-    a(href='/') Kids
-  li
-    a.btn-danger(href='http://www.ita.br/' target="_blank") INT 0x3F
+    button.btn.btn-info Prologue(main) -> {{selection}}

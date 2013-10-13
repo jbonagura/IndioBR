@@ -17,6 +17,11 @@ var UserSchema = function(di) {
 			index : true,
 			unique : false
 		},
+		username : {
+			type : String,
+			required : false,
+			trim : true
+		},
 		name : {
 			type : String,
 			required : false,

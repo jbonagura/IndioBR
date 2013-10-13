@@ -1,5 +1,3 @@
-h2 Prologue
-  button.btn.btn-info ...
-.row
-  include call
-.row(id="firepad-container")
+#firepad-container(ng-switch-when="code")
+#call(ng-switch-when="call")
+#default(ng-switch-when="default")

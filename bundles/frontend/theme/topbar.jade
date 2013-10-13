@@ -9,9 +9,9 @@
 		.navbar-collapse.collapse.navbar-responsive-collapse(collapse='isCollapsed')
 			ul.nav.navbar-nav
 				li
-					a(href='/') 
+					a(href='/int') 
 						i.icon-home 
-						| Home 
+						| Int 
 				li
 					a(href='/manifest')
 						i.icon-info-sign 
@@ -36,13 +36,12 @@
 			//							popover-title='{{share.notify.title}}', 
 			//							popover='{{share.notify.content}}', 
 			//							popover-placement='bottom') {{share.notify.btn}}
-			| 
-			img(src='/image/flag/pt-br.png')
 										//,
 										//popover-trigger='mouseenter',  
 										//popover-title='Locales...', 
 										//popover='...', 
 										//popover-placement='bottom')
-										
-				li
-					button.btn.btn-primary %EIP
+			| 
+			img(src='/image/flag/pt-br.png')
+			| 
+			a.btn-danger(href='http://www.itacodejam.com/' target="_blank") int 0x3F
