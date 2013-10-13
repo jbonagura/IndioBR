@@ -1,14 +1,3 @@
 Pictures 1 2 3 4 5
 
 h2 Interrupt 0x3F
-
-script(type='text/javascript').
-  var webrtc = new SimpleWebRTC({
-    localVideoEl: 'localVideo',
-    remoteVideosEl: 'remotesVideos',
-    autoRequestMedia: true
-  });
-
-  webrtc.on('readyToCall', function () {
-    webrtc.joinRoom('room');
-  });
