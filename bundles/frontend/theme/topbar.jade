@@ -1,4 +1,4 @@
-.navbar.navbar-inverse.navbar-fixed-top(ng-controller='TopbarPublicController')
+.navbar.navbar-inverse(ng-controller='TopbarPublicController')
 	.container
 		a.navbar-brand(href='/')
 			| IndioBR
@@ -16,10 +16,18 @@
 					a(href='/manifest')
 						i.icon-info-sign 
 						| Manifest
-				li.dropdown
-					a.dropdown-toggle(href='#', data-toggle='dropdown') Admin
-					ul.dropdown-menu
-						include adminmenu
+				li
+					a(href='/admin/subject')
+						i.icon-info-sign 
+						| Subject
+				li
+					a(href='/admin/group')
+						i.icon-info-sign 
+						| Group
+				li
+					a(href='/admin/user')
+						i.icon-user 
+						| User
 			button.btn.btn.btn-primary(type='button',
 										popover-popup-delay=1000,
 										popover-is-auto-open='{{share.notify.isAutoOpen}}', 
@@ -33,3 +41,6 @@
 										popover-title='Locales...', 
 										popover='...', 
 										popover-placement='bottom')
+										
+				li
+					button.btn.btn-primary %EIP
