@@ -1,0 +1,31 @@
+      .well
+        #myCarousel.carousel.slide
+          .carousel-inner
+            .item.active
+              .row
+                - for (var x = 0; x < 4; x++)
+                  .col-sm-3
+                    a(href='#x')
+                      img(src='http://placehold.it/150x200', alt='Image', class='img-responsive')
+            .item
+              .row
+                - for (var x = 0; x < 4; x++)
+                  .col-sm-3
+                    a(href='#x', class='thumbnail')
+                      img(src='http://placehold.it/150x200', alt='Image', class='img-responsive')
+            a(href='#myCarousel', data-slide='prev').left.carousel-control
+            a(href='#myCarousel', data-slide='next').right.carousel-control
+  script(type='text/javascript')
+    var webrtc = new SimpleWebRTC({
+      // the id/element dom element that will hold "our" video
+      localVideoEl: 'localVideo',
+      // the id/element dom element that will hold remote videos
+      remoteVideosEl: 'remotesVideos',
+      // immediately ask for camera access
+      autoRequestMedia: true
+    });
+      // we have to wait until it's ready
+    webrtc.on('readyToCall', function () {
+        // you can name it anything
+        webrtc.joinRoom('room');
+    });

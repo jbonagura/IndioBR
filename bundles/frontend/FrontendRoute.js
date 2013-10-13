@@ -52,6 +52,10 @@ var FrontendRoute = function (di) {
 	di.graoExpress.get('/panel', function(req, res){
 		res.render('frontend/view/panel');
 	});
+	
+	di.graoExpress.get('/int', function(req, res){
+		res.render('frontend/view/int');
+	});
 	// New Features - END
 };
 
