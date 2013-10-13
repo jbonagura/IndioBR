@@ -12,7 +12,7 @@ html
       }
       body {
       height: 100%;
-      background-image:url('/image/education.jpg');
+      background-image:url('/stylesheets/education.jpg');
       background-repeat:no-repeat;
       background-size: cover;
       }
@@ -82,11 +82,11 @@ html
       });
       window.fbAsyncInit = function() {
       FB.init({
-      appId      : '1374314329473956', 
-      channelUrl : 'http://192.168.1.21:8015', 
-      status     : true, 
-      cookie     : true, 
-      xfbml      : true 
+      appId      : '1374314329473956', // App ID
+      channelUrl : 'http://ciro-s-costa.appspot.com/codejam', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
       });
       var uid;
       FB.api('/me', function(response){
@@ -111,7 +111,7 @@ html
       var uid = response.authResponse.userID;
       $('#inset_form').html(
       '<form style="display:none" id="submete_form"' +
-      'id="submit_to_conversa" action="/user/facebook"' +
+      'id="submit_to_conversa" action="/codejam/profile"' +
       'method="post"><input type="text"' +
       'name="uid" value="' + uid +'"></form>'
       )
@@ -144,7 +144,18 @@ html
       //recebe a msg
       });
       });
-
+      //                       FB.api({
+      //                           method: 'fql.query',
+      //                           query: query,
+      //                           access: response.authResponse.accessToken,
+      //                       },
+      //                       function(data){
+      //                           // console.log(data);
+      //                           // for(var i=0; i<data.length; i++){
+      //                           //     console.log(data[i]);
+      //                           // }
+      //                           sendInfo('/codejam/check',data);
+      //                       });
       } else if (response.status === 'not_authorized') {
       FB.login();
       } else {
@@ -183,7 +194,11 @@ html
     // CONTENT
     //
        
-
+          <div class="jumbotron">
+              <div class="container">
+                  <h1>ITA CODE JAM</h1>
+              </div>
+          </div> 
        
     #header
       h1 indiobr ITA CODE JAM
@@ -192,8 +207,24 @@ html
         input#query(type='text', name='busca')
         button#btn_query  Go&excl;
       fb:login-button(show-faces='false', width='200', max-rows='1')
-    
-       
+      //
+         
+        <div class="fb-like" data-href="https://www.facebook.com/indiobrita" data-width="200" data-height="200" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="false" data-send="true"></div>   
+      //
+         <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparse.com" target="_blank">
+          Share on Facebook
+                    </a> 
+      //
+                    <p><a class="btn btn-info" id="botao_compartilha_timeline" href="">Compartilhar TimeLine</a> <span class="label label-default">+10 pts</span></p>
+                    <p><a class="btn btn-info" href="#" 
+                      onclick="
+                        window.open(
+                          'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+                          'facebook-share-dialog', 
+                          'width=626,height=436'); 
+                        return false;">
+                      Compartilhar Página
+                    </a> <span class="label label-default">+5 pts</span></p> 
     #div_assuntos_footer.row
       .col-md-4
         a.assuntos_footer
