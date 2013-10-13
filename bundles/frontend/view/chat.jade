@@ -1,36 +1,67 @@
-extends ../theme/layout
+extends ../theme/layout_panel
 block content
-  script(src="js/socket.io.js")
+  script(src="/js/socket.io.js")
   .row
-    h2 App
-    .row
-      .col-md-10
-        .row
-          h2 Ferramentas
-        .row
-          h2 Aplicacao
-          h4 Usuários
-          .col-md-2
-            div(id="users")
-          .col-md-4
-            div(id="conversation")
-              input(id="data")
-              input(type="button" id="datasend" value="send")
+    .col-md-12
+      .well
+        #myCarousel.carousel.slide
+          .carousel-inner
+            .item.active
+              .row
+                - for (var x = 0; x < 4; x++)
+                  .col-sm-3
+                    a(href='#x')
+                      img(src='http://placehold.it/90x90', alt='Image', class='img-responsive')
+            .item
+              .row
+                - for (var x = 0; x < 4; x++)
+                  .col-sm-3
+                    a(href='#x', class='thumbnail')
+                      img(src='http://placehold.it/90x90', alt='Image', class='img-responsive')
+            a(href='#myCarousel', data-slide='prev').left.carousel-control
+            a(href='#myCarousel', data-slide='next').right.carousel-control
+  .row
+    .col-md-10
+      h2 Aplicação
+      h4 Usuários
       .col-md-2
-        h2 Features
-        ul
-          li Feature 1
-          li Feature 2
-          li Feature 3
-          li Feature 4
-    .row
-      .col-md-12
-        h2 Slider
-  script(src="http://code.jquery.com/jquery-1.8.0.min.js")
-  script
-    
-    var socket = io.connect('http://localhost:8022');
-
+        div(id="users")
+      .col-md-4
+        div(id="conversation")
+          input(id="data")
+          input(type="button" id="datasend" value="send")
+    .col-md-2
+      h2 Features
+      ul
+        li
+          a(href='/presentation') Apresentação
+        li
+          a(href='/camera') Câmera
+        li
+          a(href='/chat') Chat
+        li
+          a(href='/draw') Desenho
+  .row
+    .col-md-12
+      .well
+        #myCarousel.carousel.slide
+          .carousel-inner
+            .item.active
+              .row
+                - for (var x = 0; x < 4; x++)
+                  .col-sm-3
+                    a(href='#x')
+                      img(src='http://placehold.it/150x200', alt='Image', class='img-responsive')
+            .item
+              .row
+                - for (var x = 0; x < 4; x++)
+                  .col-sm-3
+                    a(href='#x', class='thumbnail')
+                      img(src='http://placehold.it/150x200', alt='Image', class='img-responsive')
+            a(href='#myCarousel', data-slide='prev').left.carousel-control
+            a(href='#myCarousel', data-slide='next').right.carousel-control
+  script    
+    var socket = io.connect('http://localhost:8015');
     // on connection to server, ask for user's name with an anonymous callback
     socket.on('connect', function(){
       // call the server-side function 'adduser' and send one parameter (value of prompt)
