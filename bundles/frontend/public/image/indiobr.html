@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Modelo de apresentação do Indio BR</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="impress-demo.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Seu navegador <b>não possui os requisitos mínimos</b> do impress.js, então será mostrada uma versão simplificada dessa apresentação.</p>
+    <p>Para uma melhor experiência utilize as últimas versões de <b>Chrome</b>, <b>Safari</b> ou <b>Firefox</b>.</p>
+</div>
+<div id="impress">
+    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+        <q>Modelo de apresentação através da plataforma de aprendizagem do <b>IndioBR</b></q>
+    </div>
+    <div class="step slide" data-x="0" data-y="-1500">
+        <q>Não pense que apresentações dadas <strong>em navegadores modernos</strong> não deveria <strong>copiar os limites</strong> de apresentações 'classicas'?</q>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="-1500">
+        <q>Você gostaria de <strong>impressionar sua audiência</strong> com <strong>fantástica visualização</strong> da sua fala?</q>
+    </div>
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+        <span class="try">então você deveria tentar</span>
+        <h1>impress.js<sup>*</sup></h1>
+        <span class="footnote"><sup>*</sup> sem nenhuma rima</span>
+    </div>
+    <div id="its" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+        <p>Esta é uma <strong>ferramenta de apresentação</strong> <br/>
+        inspirada pela idéia atrás do <a href="http://prezi.com">prezi.com</a> <br/>
+        e baseada no <strong>poder das transformações e transições CSS3</strong> em navegadores modernos.</p>
+    </div>
+
+    <div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
+        <p>visualize seus <b>grandes</b> <span class="thoughts">pensamentos</span></p>
+    </div>
+    <div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>e <b>pequenas</b> idéias</p>
+    </div>
+    <div id="ing" class="step" data-x="3500" data-y="-850" data-rotate="270" data-scale="6">
+        <p>por <b class="positioning">posicionamento</b>, <b class="rotating">rotatativo</b> e <b class="scaling">escalar</b> em uma tela infinita</p>
+    </div>
+
+    <div id="imagination" class="step" data-x="6700" data-y="-300" data-scale="6">
+        <p>o único <b>limite</b> é sua <b class="imagination">imaginação</b></p>
+    </div>
+
+    <div id="source" class="step" data-x="6300" data-y="2000" data-rotate="20" data-scale="4">
+        <p>quer saber mais?</p>
+        <q><a href="http://github.com/bartaz/impress.js">use o código fonte</a>, Luke!</q>
+    </div>
+
+    <div id="one-more-thing" class="step" data-x="6000" data-y="4000" data-scale="2">
+        <p>e mais uma coisa...</p>
+    </div>
+    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <p><span class="you">você</span> <span class="noticed">percebeu</span> <span class="its">isto</span> <span class="in">em</span> <b>3D<sup>*</sup></b>?</p>
+        <span class="footnote">* bata essa, prezi ;)</span>
+    </div>
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+</div>
+<div class="hint">
+    <p>Utilize a barra de espaço ou as setinhas para navegar</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Toque na esquerda ou na direita para navegar</p>";
+}
+</script>
+<script src="impress.js"></script>
+<script>impress().init();</script>
+</body>
+</html>
