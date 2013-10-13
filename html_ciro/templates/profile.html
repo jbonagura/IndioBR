@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Profile</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <style type="text/css">
+    .conversa_encontrada{
+        padding: 10px;
+        margin-bottom: 10px;
+        color: #808080;
+        margin-left: 10%;
+        margin-right: 10%;
+        transition: background 0.5s;
+        -webkit-transition: background 0.5s;
+        background: #F8F8F8;
+        box-shadow: 2px 2px 1px rgb(220,220,220);
+    }
+
+    .conversa_encontrada:hover {
+        background: #F0F0F0;
+        cursor:pointer;
+    }
+
+    #div_busca {
+      display: none;
+    }
+
+    #background_shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        height: 100%;
+        display: none;
+        width: 100%;
+        background: rgba(255,255,255,0.8);
+    }
+
+    .custom_modal {
+        position: absolute;
+        margin-left:5%;
+        top: 10%;
+        width: 80%;
+        max-width: 700px;
+        background: white;
+        z-index: 3 !important;
+        display: none;
+        padding: 4%;
+        border: 1px solid rgba(200,200,200,0.5);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    </style>
+</head>
+<body>
+
+<script>
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1374314329473956', // App ID
+      channelUrl : 'http://192.168.1.21:8080/codejam', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    var uid; 
+
+    FB.api('/me', function(response){
+        uid = response.id;
+    });
+
+
+    FB.Event.subscribe('edge.create',function(href,widget){
+        $.ajax({
+            type:"POST",
+            url:"/codejam/insert",
+            data:{
+                'user_id':uid,
+                'action':'like',
+            },
+        }) 
+    });
+
+    FB.Event.subscribe('edge.remove',function(response){
+
+    });
+
+  FB.Event.subscribe('auth.authResponseChange', function(response) {
+    // Here we specify what we do with the response anytime this event occurs. 
+    if (response.status === 'connected') {
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      FB.login();
+    } else {
+      FB.login();
+    }
+  });
+ };
+
+  // Load the SDK asynchronously
+(function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+}(document));
+
+
+function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+        console.log('Good to see you, ' + response.name + '.');
+        $('#p_welcome').text('Seja bem vindo ' + response.name );
+    });
+}
+
+
+
+$(function(){
+    var selecionado = null;
+    var aberto = -1;
+    var $back_shad = $('#background_shadow');
+
+    $(document).keyup(function(e) {
+        if(aberto == 1){
+            if (e.keyCode == 27){
+                closeAnyModal(); 
+            }
+        }
+    });
+
+    function showModal(modal){
+        selecionado = modal;
+        aberto *= -1;
+        modal.fadeIn(200);
+        $back_shad.fadeToggle(200);
+    }
+
+    function closeAnyModal(){
+        if(aberto == 1){
+            selecionado.fadeOut(200);
+            $back_shad.fadeOut(200);
+            aberto *= -1;
+        }
+    }
+
+    $back_shad.click(function(){
+        closeAnyModal();
+    });
+
+    $('#botao_busca').submit(function(e){
+      console.log("AF");
+      e.preventDefault();
+      if($('#input_busca').val().length > 0){
+        $('#div_busca').slideDown().fadeIn();
+      }
+    });
+
+    $('#b_sair').click(function(){
+        FB.logout(function(response){
+            //
+            window.location = "http://192.168.1.21:8080/codejam";
+        });
+    });
+
+    $('#btn_criar_assunto').click(function(){
+        showModal($('#criar_assunto'));
+    });
+
+    $('#btn_entrar_chave').click(function(){
+      $.ajax({
+        type:"POST",
+        url:"url_to_post",
+        data:{
+          "input_criar_assunto" : $('#input_criar_assunto').val()
+        },
+      }).done(function(response){
+        console.log(response);
+      });
+    });
+});
+
+
+
+</script>
+
+<div id="background_shadow">
+    </div>
+
+ <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">indioBR</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">Profile</a></li>
+              <li><a href="#contact">Contato</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ações <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a id="btn_criar_assunto">Criar Assunto</a></li>
+                  <li><a>Another action</a></li>
+                  <li><a>Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Account</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a id="b_sair">Sair</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-left" >
+              <div class="form-group">
+                <input type="text" id="input_busca" class="form-control" placeholder="assuntos">
+              </div>
+              <button type="submit" class="btn btn-default" id="botao_busca">Busca!</button>
+            </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      <!-- Resultados da Busca -->
+
+  <div class="container" style="text-align:center">
+    
+    <div  id="div_busca">
+    <div class="page-header">
+          <h1>Encontrado</h1>
+      </div>
+      <p class="lead">assunto encontrado pela busca </p>
+
+        <ul class="media-list">
+          <li class="media">
+            <div class="media-body conversa_encontrada">
+              <h4 class="media-heading">Assunto principal</h4>
+              Pequeno texto sobre o assunto o qual é tratado aqui.
+            </div>
+          </li>
+        </ul>
+    </div>
+
+      <!--  Resultados da Busca-->
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="page-header">
+              <h1>Usuário</h1>
+            </div>
+            <p class="lead">Seus assuntos escolhidos:</p>
+
+            <ul class="media-list">
+              <li class="media">
+                <a class="pull-left" href="#">
+                  <img class="media-object" src="" alt="imagem">
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">Assunto principal</h4>
+                  Pequeno texto sobre o assunto o qual é tratado aqui.
+                </div>
+              </li>
+              <li class="media">
+                <a class="pull-left" href="#">
+                  <img class="media-object" src="" alt="imagem">
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">Assunto principal 2</h4>
+                  Pequeno texto sobre o assunto o qual é tratado aqui.
+                </div>
+              </li>
+            </ul>
+            </div>
+          <div class="col-md-6">
+            <div class="page-header">
+              <h1>Trending</h1>
+            </div>
+
+            <ul class="media-list">
+              <li class="media">
+                <a class="pull-left" href="#">
+                  <img class="media-object" src="" alt="imagem">
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">Assunto principal</h4>
+                  Pequeno texto sobre o assunto o qual é tratado aqui.
+                </div>
+              </li>
+              <li class="media">
+                <a class="pull-left" href="#">
+                  <img class="media-object" src="" alt="imagem">
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">Assunto principal 2</h4>
+                  Pequeno texto sobre o assunto o qual é tratado aqui.
+                </div>
+              </li>
+            </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+      </div>
+    </div>
+<!-- 
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+      </div>
+    </div> -->
+
+<div id="criar_assunto" class="custom_modal">
+    <h2 style="position:absolute;top:0">Criar Assunto</h2>
+        <label for="criar_assunto" style="margin-top:10px">Nome</label>
+        <input type="text" class="form-control" id="input_criar_assunto" name="criar_assunto" id="criar_assunto"
+         placeholder="Assunto do aprendizado">
+        <p>
+            <input type="submit" style="margin-top:4px" class="btn btn-success" 
+            id="btn_entrar_chave" value="Criar">
+        </p>
+</div>
+
+
+
+
+</body>
+</html>
