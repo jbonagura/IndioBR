@@ -98,6 +98,26 @@ var service = {
 			}
 		});
 		res.end();
+	},
+	
+	facebook : function(req, res) {
+		console.log(req.body);
+		user = new User(req.body);
+		user.save(function(err) {
+			if (err) {
+				event.newEvent({
+					name: 'kernel\.controllers\.service\.user\.create', 
+					message: err
+				}).error().present().log('error');
+			} else {
+				event.newEvent({
+					name: 'kernel\.controllers\.service\.user\.create', 
+					message: 'created'
+				}).success().present().log('info');
+			}
+		});
+		
+		res.end();
 	}
 };
 

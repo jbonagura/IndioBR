@@ -7,6 +7,7 @@ var UserRoute = function(di) {
 
 	di.graoExpress.get('/admin/user', di.controllers.user.admin.dashboard);
 	di.graoExpress.get('/user/:username', di.controllers.user.service.get);
+	di.graoExpress.post('/user/facebook', di.controllers.user.service.facebook);
 };
 
 module.exports = exports = UserRoute;
