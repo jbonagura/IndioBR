@@ -13,13 +13,13 @@ var UserSchema = function(di) {
 		},
 		facebook_id : {
 			type : Number,
-			required : true,
+			required : false,
 			index : true,
-			unique : true
+			unique : false
 		},
 		name : {
 			type : String,
-			required : true,
+			required : false,
 			trim : true
 		},
 		email : {
@@ -27,7 +27,7 @@ var UserSchema = function(di) {
 			lowercase : true,
 			required : false,
 			index : true,
-			unique : true,
+			unique : false,
 			trim : true,
 			validate : validate('isEmail')
 		},
