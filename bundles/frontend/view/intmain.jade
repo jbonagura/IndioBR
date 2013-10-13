@@ -1,3 +1,9 @@
+#default(ng-switch-when="default") Select your interaction
 #firepad-container(ng-switch-when="code")
+div(ng-switch-when="slides")
+  iframe(src='/image/indiobr.html', width='800', height='600')
 #call(ng-switch-when="call")
-#default(ng-switch-when="default")
+  .col-md-3
+    video(id='localVideo', width='200')
+  .col-md-3
+    div(id='remotesVideo', width='200')
