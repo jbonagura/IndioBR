@@ -6,6 +6,7 @@ html
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
     script(src='http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js')
     link(rel='stylesheet', type='text/css', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css')
+    script(src="/js/index_js.js")
     style(type='text/css')
       html{
       height: 100%;
@@ -55,143 +56,20 @@ html
   body
     // FACEBOOK
     #inset_form
-    script
-      // Additional JS functions here
-      $(function(){
-      $('#header').fadeIn(400);
-      var pesquisa_enabled = -1;
-      $('#btn_query').click(function(){
-      pesquisa_enabled *= -1;
-      $('#header').css("height","100%").css("margin-top","0");
-      $('#p_welcome').slideUp().fadeOut();
-      $('#div_assuntos_footer').slideUp().fadeOut();
-      });
-      function saiModoPesquisa(){
-      pesquisa_enabled *= -1;
-      $('#header').css("height","").css("margin-top","10%");
-      $('#p_welcome').slideDown().fadeIn();
-      $('#div_assuntos_footer').slideDown().fadeIn();
-      }
-      $(document).keyup(function(e) {
-      if(pesquisa_enabled == 1){
-      if (e.keyCode == 27){
-      saiModoPesquisa();
-      }
-      }
-      });
-      });
-      window.fbAsyncInit = function() {
-      FB.init({
-      appId      : '1374314329473956', 
-      channelUrl : 'http://192.168.1.21:8015', 
-      status     : true, 
-      cookie     : true, 
-      xfbml      : true 
-      });
-      var uid;
-      FB.api('/me', function(response){
-      uid = response.id;
-      });
-      FB.Event.subscribe('edge.create',function(href,widget){
-      $.ajax({
-      type:"POST",
-      url:"/codejam/insert",
-      data:{
-      'user_id':uid,
-      'action':'like',
-      },
-      })
-      });
-      FB.Event.subscribe('edge.remove',function(response){
-      });
-      FB.Event.subscribe('auth.authResponseChange', function(response) {
-      // Here we specify what we do with the response anytime this event occurs.
-      if (response.status === 'connected') {
-      testAPI();
-      var uid = response.authResponse.userID;
-      $('#inset_form').html(
-      '<form style="display:none" id="submete_form"' +
-      'id="submit_to_conversa" action="/user/facebook"' +
-      'method="post"><input type="text"' +
-      'name="uid" value="' + uid +'"></form>'
-      )
-      $('#submete_form').submit();
-      //*********************************************
-      var query = 'SELECT uid, name, age_range,current_address,sex ' +
-      'FROM user WHERE uid=' + uid
-      console.log(query);
-      FB.api({
-      method: 'fql.query',
-      query: query,
-      }, function(data){
-      console.log(data[0]);
-      //coloca na DB as coisas obtidas no query para o que logou
-      $.ajax({
-      type:"POST",
-      url:"/codejam/check",
-      data:data[0]
-      }).done(function(msg){
-      //recebe a msg
-      });
-      });
-      FB.api('/me/friends',function(response){
-      console.log(response['data']);
-      $.ajax({
-      type:"POST",
-      url:"/codejam/check",
-      data:response['data']
-      }).done(function(msg){
-      //recebe a msg
-      });
-      });
-
-      } else if (response.status === 'not_authorized') {
-      FB.login();
-      } else {
-      FB.login();
-      }
-      });
-      };
-      // Load the SDK asynchronously
-      (function(d){
-      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement('script'); js.id = id; js.async = true;
-      js.src = "//connect.facebook.net/en_US/all.js";
-      ref.parentNode.insertBefore(js, ref);
-      }(document));
-      function testAPI() {
-      console.log('Welcome!  Fetching your information.... ');
-      FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-      $('#p_welcome').text('Seja bem vindo ' + response.name );
-      });
-      }
-      // FUNCTION TO SET BEM VINDO
-      function setBemVindo(){
-      FB.api('/me',function(response){
-      $('#p_welcome').text('Seja bem vindo ' + response.name );
-      });
-      }
-      $(function(){
-      $('#botao_compartilha_timeline').click(function(){
-      FB.login(function(response){
-      //
-      },{scope:'read_stream'});
-      });
-      });
-    // CONTENT
-    //
        
 
        
     #header
-      h1 indiobr ITA CODE JAM
+      h1#h1_header indiobr ITA CODE JAM
       p#p_welcome.lead Fa&ccedil;a login e ajude esta causa&excl;
       p
         input#query(type='text', name='busca')
         button#btn_query  Go&excl;
-      fb:login-button(show-faces='false', width='200', max-rows='1')
+      fb:login-button(show-faces='false',id="fb_button" width='400', max-rows='2')
+      button#botao_logout(style="display:none;background-color:#3B5998;color:#fff;border:0px;padding:5px ")
+      button#botao_voltar(style="display:none;background-color:#3D5291;color:#fff;border:0px;padding:5px ").
+        voltar
+      div#resultado_pesquisa
     
        
     #div_assuntos_footer.row
